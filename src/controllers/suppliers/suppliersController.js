@@ -3,47 +3,38 @@ const listService = require("../../services/common/listService");
 const updateService = require("../../services/common/updateService");
 const dropdownService = require("../../services/common/dropdownService");
 const detailsByIdService = require("../../services/common/detailsByIdService");
-const customerModel = require("../../models/coustomarsModel");
+const suppliersModel = require("../../models/suppliersModel");
 
 
-exports.createCustomerController = async (req,res)=>{
-    let result = await createService(req,customerModel);
+
+exports.createSupplierController = async (req,res)=>{
+    let result = await createService(req,suppliersModel);
     res.status(201).send(result)
 };
 
 
-exports.updateCustomerController = async (req,res)=>{
-    let result = await updateService(req,customerModel);
+exports.updateSupplierController = async (req,res)=>{
+    let result = await updateService(req,suppliersModel);
     res.status(200).send(result)
 };
 
 
-exports.dropdownCustomerController = async (req,res)=>{
-    let result = await dropdownService(req,customerModel,{  _id:1,name:1 });
+exports.dropdownSupplierController = async (req,res)=>{
+    let result = await dropdownService(req,suppliersModel,{  _id:1,name:1 });
     res.status(200).send(result)
 };
 
 
-exports.listCustomerController = async (req,res)=>{
+exports.listSupplierController = async (req,res)=>{
     let searchValue = { "$regex" : req.params.searchKeyword, "$options" : "i" };
     let searchArray = [{ name : searchValue }]
-    let result =  await listService(req,customerModel,searchArray);
+    let result =  await listService(req,suppliersModel,searchArray);
     res.status(200).send(result)
 };
 
 
 
-exports.detailsByIdCustomerController = async (req,res)=>{
-    let result = await detailsByIdService(req,customerModel);
+exports.detailsByIdSupplierController = async (req,res)=>{
+    let result = await detailsByIdService(req,suppliersModel);
     res.status(200).send(result)
 };
-
-
-
-
-
-
-
-
-
-

@@ -1,16 +1,17 @@
 const userModel = require("../../models/userModel");
 
-const profileDetailsService =async (req) => {
+const updateUserService =async (req) => {
     try {
         let email = req.headers["email"];
         let filter = {
             email : email
         };
-        let data = await userModel.findOne(filter);
+        let reqBody = req.body;
+        let data = await userModel.updateOne(filter,reqBody);
         return {
             status:"success",
             data : data
-        };
+        }
     }catch (e) {
         return {
             status:"fail",
@@ -19,4 +20,4 @@ const profileDetailsService =async (req) => {
     }
 };
 
-module.exports = profileDetailsService;
+module.exports = updateUserService;
