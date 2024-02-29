@@ -5,7 +5,6 @@ const {Schema,model} = mongoose;
 const expenseTypeSchema = new Schema({
     userEmail : {
         type : String,
-        required : true
     },
     name : {
         type : String,

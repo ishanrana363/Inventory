@@ -1,9 +1,13 @@
-const brandModel = require("../../models/brandModel")
+const brandModel = require("../../models/brandModel");
+const productModel = require("../../models/productListModel");
 const createService = require("../../services/common/createService");
 const listService = require("../../services/common/listService");
 const updateService = require("../../services/common/updateService");
 const dropdownService = require("../../services/common/dropdownService");
 const detailsByIdService = require("../../services/common/detailsByIdService");
+const checkAssociate = require("../../services/common/cheackAssociate");
+const deleteService = require("../../services/common/deleteService");
+const mongoose = require("mongoose");
 
 
 
@@ -39,7 +43,20 @@ exports.brandDetailsIdController = async (req,res)=>{
     res.status(200).send(result);
 };
 
-
+exports.brandDeleteController = async (req,res)=>{
+    let deleteId = new mongoose.Types.ObjectId(req.params.id);
+    let associate = await checkAssociate({brandId: deleteId},productModel);
+    if (associate){
+        res.status(200).send({
+            status:"associate",
+            msg : "Associate with brand"
+        });
+    }else {
+        let result = await deleteService(req,brandModel);
+        console.log(result)
+        res.status(200).send(result);
+    }
+};
 
 
 

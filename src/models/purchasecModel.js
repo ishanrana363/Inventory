@@ -16,7 +16,6 @@ const purchaseSchema = new Schema({
     },
     discount:{
         type :Number,
-        required : true
     },
     otherCost : {
         type :Number,
@@ -26,7 +25,7 @@ const purchaseSchema = new Schema({
         type :Number,
         required : true
     },
-    grandCost : {
+    grandTotal : {
         type :Number,
         required : true
     },

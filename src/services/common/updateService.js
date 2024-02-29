@@ -1,11 +1,11 @@
 const updateService = async (req,dataModel) => {
     try {
-        let email = req.headers["email"];
+        let userEmail = req.headers["email"];
         let id = req.params.id;
         let reqBody = req.body;
         let update = reqBody;
         let filter = {
-            email : email,
+            userEmail : userEmail,
             _id : id
         };
         let data = await dataModel.updateOne(filter,update);

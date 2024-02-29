@@ -4,6 +4,10 @@ const updateService = require("../../services/common/updateService");
 const dropdownService = require("../../services/common/dropdownService");
 const detailsByIdService = require("../../services/common/detailsByIdService");
 const customerModel = require("../../models/coustomarsModel");
+const deleteService = require("../../services/common/deleteService");
+const checkAssociate = require("../../services/common/cheackAssociate");
+const sellProductModel = require("../../models/sellProductModel");
+const mongoose = require("mongoose");
 
 
 exports.createCustomerController = async (req,res)=>{
@@ -14,7 +18,7 @@ exports.createCustomerController = async (req,res)=>{
 
 exports.updateCustomerController = async (req,res)=>{
     let result = await updateService(req,customerModel);
-    res.status(200).send(result)
+    res.status(200).send(result);
 };
 
 
@@ -40,7 +44,19 @@ exports.detailsByIdCustomerController = async (req,res)=>{
 
 
 
-
+exports.deleteCustomerController = async (req,res)=>{
+    let deleteId = new mongoose.Types.ObjectId(req.params.id);
+    let checkSales = await checkAssociate({sellId:deleteId},sellProductModel);
+    if (checkSales){
+        res.status(200).send({
+            status:"Associate",
+            msg:"Associate with sell id"
+        })
+    }else {
+        let result = await deleteService(req,customerModel);
+        res.send(result)
+    }
+};
 
 
 

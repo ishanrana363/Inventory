@@ -16,7 +16,7 @@ const expenseSchema = new Schema({
         required : true
     },
     amount : {
-        type : String,
+        type : Number,
         required : true
     },
     note : {

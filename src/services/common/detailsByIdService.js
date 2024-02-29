@@ -4,7 +4,7 @@ const detailsByIdService = async (req,dataModel) => {
         let id = new mongoose.Types.ObjectId(req.params.id);
         let email = req.headers["email"];
         let data = await dataModel.aggregate([
-            { $match : {_id:id , email : email } }
+            { $match : {_id:id , userEmail : email } }
         ]);
         return { status:"success",data:data };
     }catch (e) {

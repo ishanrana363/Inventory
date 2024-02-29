@@ -2,7 +2,7 @@ const mongoose = require("mongoose");
 const {Schema,model} = mongoose;
 
 const brandSchema = new Schema({
-    email : {
+    userEmail : {
         type :String,
         required : true,
     },name : {

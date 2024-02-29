@@ -1,7 +1,7 @@
 const createService = async (req,dataModel) => {
     try{
         let reqBody = req.body;
-        reqBody.email = req.headers["email"];
+        reqBody.userEmail = req.headers["email"];
         let data = await dataModel.create(reqBody);
         return {
             status:"success",

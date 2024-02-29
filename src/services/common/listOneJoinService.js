@@ -1,36 +1,43 @@
-const listOneJoinService =async (req,dataModel,searchArray,joinStage) =>{
-    try {
-        let userEmail = req.headers["email"];
-        let perPage = Number(req.params.prePage);
+const ListOneJoinService= async (req, dataModel, searchArray, joinStage) => {
+    try{
         let pageNo = Number(req.params.pageNo);
-        let searchValue = req.params.searchValue;
-        let skipRow = (pageNo-1)*perPage;
+        let perPage = Number(req.params.perPage);
+        let searchValue = req.params.searchKeyword;
+        let userEmail=req.headers['email'];
+        let skipRow = (pageNo - 1) * perPage;
+
         let data;
-        if (searchValue!=="0"){
+
+        if (searchValue!=="0") {
             data = await dataModel.aggregate([
-                { $match : { userEmail : userEmail } },
+                {$match: {userEmail:userEmail}},
                 joinStage,
-                { $match : { $or : searchValue } },
-                { $facet : {
-                    total : [{ $count : "count" }],
-                    rows : [ { $skip : skipRow, $limit : perPage } ]
-                } }
-            ]);
-        }else {
-            data = await dataModel.aggregate([
-                { $match : { userEmail : userEmail } },
-                joinStage,
-                { $facet : {
-                    total : [{ $count : "total" }],
-                    rows : [ { $skip : skipRow , $limit : perPage } ]
-                } }
-            ]);
+                {$match: {$or: searchArray}},
+                {
+                    $facet:{
+                        Total:[{$count: "count"}],
+                        Rows:[{$skip: skipRow}, {$limit: perPage}]
+                    }
+                }
+            ])
+
         }
-        return { status:"success", data : data};
-    }catch (e) {
-        return { status:"fail", msg : e.toString()};
+        else {
+            data = await dataModel.aggregate([
+                {$match: {userEmail:userEmail}},
+                joinStage,
+                {
+                    $facet:{
+                        Total:[{$count: "count"}],
+                        Rows:[{$skip: skipRow}, {$limit: perPage}]
+                    }
+                }
+            ])
+        }
+        return {status: "success", data: data}
     }
-};
-
-
-module.exports = listOneJoinService;
+    catch (error) {
+        return {status: "fail", data: error}
+    }
+}
+module.exports=ListOneJoinService

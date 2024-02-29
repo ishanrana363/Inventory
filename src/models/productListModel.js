@@ -30,10 +30,10 @@ const productSchema = new Schema({
     versionKey:false
 });
 
-const productModel = model("products",productSchema);
+const productListModel = model("products",productSchema);
 
 
-module.exports = productModel;
+module.exports = productListModel;
 
 
 
