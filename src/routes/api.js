@@ -14,6 +14,7 @@ const purchaseController = require("../controllers/purchase/purchaseController")
 const salesController = require("../controllers/sales/salesController");
 const returnController = require("../controllers/return/returnController");
 const reportController = require("../controllers/report/reportController");
+const summeryController = require("../controllers/summery/dashboardSummeryController")
 
 
 
@@ -138,6 +139,17 @@ router.get("/expense/report",authMiddleware, reportController.expenseReportContr
 router.get("/purchase/report",authMiddleware, reportController.purchaseReportController);
 router.get("/return/report",authMiddleware, reportController.returnReportController);
 router.get("/sales/report",authMiddleware, reportController.salesReportController);
+
+
+// summery d
+
+
+router.get("/expense/summery",authMiddleware,  summeryController.expenseSummeryController);
+router.get("/purchase/summery",authMiddleware, summeryController.purchaseSummeryController);
+router.get("/return/summery",authMiddleware, summeryController.returnSummeryController);
+router.get("/sales/summery",authMiddleware, summeryController.sellSummeryController);
+
+
 
 
 

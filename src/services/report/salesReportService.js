@@ -2,8 +2,8 @@ const sellProductModel = require("../../models/sellProductModel");
 const salesReportService =async (req) => {
     try {
         let userEmail = req.headers["email"];
-        let fromDate = req.body.fromDate;
-        let toDate = req.body.toDate;
+        let fromDate = req.body["fromDate"];
+        let toDate = req.body["toDate"];
         let data = await sellProductModel.aggregate([
             { $match : { userEmail : userEmail , createdDate: { $gte : new Date(fromDate), $lte : new Date(toDate)}}},
             {
