@@ -105,6 +105,7 @@ router.post("/product/create",authMiddleware, productsListController.productCrea
 router.put("/product/update/:id",authMiddleware, productsListController.productUpdateController);
 router.get("/product-list/:pageNo/:perPage/:searchKeyword",authMiddleware, productsListController.productListController);
 router.delete("/product/delete/:id",authMiddleware, productsListController.productDeleteController);
+router.get("/product/details/:id",authMiddleware, productsListController.productDetailsById);
 
 
 //purchase
@@ -141,7 +142,7 @@ router.get("/return/report",authMiddleware, reportController.returnReportControl
 router.get("/sales/report",authMiddleware, reportController.salesReportController);
 
 
-// summery d
+// summery
 
 
 router.get("/expense/summery",authMiddleware,  summeryController.expenseSummeryController);

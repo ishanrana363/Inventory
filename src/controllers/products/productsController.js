@@ -3,11 +3,10 @@ const updateService = require("../../services/common/updateService");
 const listTowJoinService = require("../../services/common/listTowJoinService");
 const deleteService = require("../../services/common/deleteService");
 const checkkAssociate = require("../../services/common/cheackAssociate");
+const detailsByIdService = require("../../services/common/detailsByIdService");
 const sellProductModel = require("../../models/sellProductModel");
 const returnProductDataModel = require("../../models/returnProductData");
 const purchaseProductModel = require("../../models//purchaseProductModel");
-
-
 const productListModel = require("../../models/productListModel");
 const mongoose = require("mongoose");
 
@@ -67,7 +66,10 @@ exports.productDeleteController = async (req,res)=>{
     }
 };
 
-
+exports.productDetailsById = async (req,res)=>{
+    let result = await detailsByIdService(req,productListModel);
+    res.status(200).send(result);
+};
 
 
 

@@ -1,6 +1,5 @@
 const createService = require("../../services/common/createService");
 const updateService = require("../../services/common/updateService");
-const dropdownService = require("../../services/common/dropdownService");
 const detailsByIdService = require("../../services/common/detailsByIdService");
 const listOneJoinService = require("../../services/common/listOneJoinService");
 const deleteService = require("../../services/common/deleteService")
