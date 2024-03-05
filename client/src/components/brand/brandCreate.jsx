@@ -3,8 +3,10 @@ import {Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 import {errorToast, isEmpty, successToast} from "../../helpers/FormHelper.js";
 import {createBrandApi} from "../../apiRequest/brandApi/brandApi.js";
+import {useNavigate} from "react-router-dom";
 
 const BrandCreate = () => {
+    const navigate = useNavigate();
     const [loder, setLoder] = useState("d-none");
     const [data, setData] = useState({
         name : ""
@@ -24,6 +26,7 @@ const BrandCreate = () => {
             let res = await createBrandApi(data);
             setLoder("d-none");
             if (res){
+                navigate("/brand/list");
                 successToast("Brand create successfully");
             }else {
                 errorToast("Something went worng");
@@ -38,7 +41,7 @@ const BrandCreate = () => {
                             <div className="card">
                                 <div className="card-body">
                                     <div className="row">
-                                        <h5 >Brand Supplier</h5>
+                                        <h5 >Brand Create Page</h5>
                                         <hr className="bg-light"/>
 
                                         <div className="col-4 p-2">

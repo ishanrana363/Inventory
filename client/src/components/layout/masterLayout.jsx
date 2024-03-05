@@ -73,14 +73,14 @@ const MasterLayout = () => {
                                         </NavLink>
                                     </div>
 
-                                    <NavLink to="" className="side-bar-item ">
+                                    <NavLink to="/brand/list" className="side-bar-item ">
                                         <span className="side-bar-item-caption ms-5 ">Brand List</span>
                                     </NavLink>
 
                                     <NavLink to="/category/create" className="side-bar-item">
                                         <span className="side-bar-item-caption ms-5 ">New Category</span>
                                     </NavLink>
-                                    <NavLink to="" className="side-bar-item">
+                                    <NavLink to="/category/list" className="side-bar-item">
                                         <span className="side-bar-item-caption ms-5 ">Category List</span>
                                     </NavLink>
                                     <NavLink to="" className="side-bar-item">

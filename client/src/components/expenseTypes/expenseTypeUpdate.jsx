@@ -49,7 +49,7 @@ const ExpenseTypeUpdate = () => {
     };
     const nameRef = useRef();
     return (
-        <div>
+
             <>
                 <div className="container mt-5  ">
                     <div className="row">
@@ -81,7 +81,6 @@ const ExpenseTypeUpdate = () => {
                 <Toaster position="top-center"/>
                 <FullScreenLoder visibility = {loder} />
             </>
-        </div>
     );
 };
 

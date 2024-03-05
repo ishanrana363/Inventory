@@ -22,13 +22,21 @@ import ExpenseCreate from "./components/expense/expenseCreate.jsx";
 import ExpenseCreatePage from "./pages/expense/expenseCreatePage.jsx";
 import ExpenseListPage from "./pages/expense/expenseListPage.jsx";
 import ExpenseUpdatePage from "./pages/expense/expenseUpdatePage.jsx";
+import BrandUpdatePage from "./pages/brand/brandUpdatePage.jsx";
+import BrandListPage from "./pages/brand/brandListPage.jsx";
+import CategoryList from "./components/category/categoryList.jsx";
+import CategoryListPage from "./pages/category/categoryListPage.jsx";
+import CategoryUpdate from "./components/category/categoryUpdate.jsx";
+import UpdateCategoryListPage from "./pages/category/updateCategoryListPage.jsx";
 
 const App = () => {
     if (getToken()){
         return(
                 <BrowserRouter>
                     <Routes>
+
                         <Route path="/" element={ < DashboardSummeryPage /> } />
+
                         <Route path="/customer/create" element={<CustomerCreatePage/>} />
                         <Route path="/customer/list" element={<CustomerListPage/>} />
                         <Route path="/update/customer/:id" element={<CustomerUpdatePage/>} />
@@ -45,10 +53,19 @@ const App = () => {
                         <Route path="/expense/list" element={<ExpenseListPage/>} />
                         <Route path="/expense/update/:id" element={<ExpenseUpdatePage/>} />
 
-
-
                         <Route path="/brand/create" element={<CreateBrandPage/>} />
+                        <Route path="/brand/list" element={< BrandListPage />} />
+                        <Route path="/brand/update/:id" element={< BrandUpdatePage />} />
+
                         <Route path="/category/create" element={<CreateCategoryPage/>} />
+                        <Route path="/category/list" element={<CategoryListPage/>} />
+                        <Route path="/category/update/:id" element={<UpdateCategoryListPage/>} />
+
+
+
+
+
+
                     </Routes>
                 </BrowserRouter>
         )
