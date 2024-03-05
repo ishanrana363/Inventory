@@ -43,5 +43,5 @@ exports.detailsByIdExpenseController = async (req,res)=>{
 
 exports.deleteExpenseController = async (req,res)=>{
     let result = await deleteService(req,expenseModel);
-    res.status(200).send(result)
+    res.status(200).send(result);
 };

@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const deleteService =async (req,dataModel) => {
     try {
         let id = req.params.id;

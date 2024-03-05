@@ -1,5 +1,6 @@
 import axios from "axios";
 import {getToken} from "../../helpers/SessionHelper.js";
+import {errorToast} from "../../helpers/FormHelper.js";
 const baseUrl = `http://localhost:5050/api/v1`;
 
 const config = {
@@ -22,9 +23,12 @@ export const createExpenseTypesApi = (postBody) => {
 };
 
 export const deleteExpenseTypesApi = (id) => {
-    let url = `${baseUrl}/expense/delete/${id}`;
+    let url = `${baseUrl}/expense-types/delete/${id}`;
     return axios.delete(url,config).then((res)=>{
-        if (res.data["status"]==="success"){
+        if (res.data["status"]==="Associate"){
+            errorToast("Associate with typeId");
+        }
+         else if (res.data["status"]==="success"){
             return true;
         }else {
             return false;

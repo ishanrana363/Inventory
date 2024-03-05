@@ -31,6 +31,7 @@ export const deleteExpenseApi = (id) => {
     let url = `${baseUrl}/expense/delete/${id}`;
     return axios.delete(url,config).then((res)=>{
         if (res.data["status"]==="success"){
+            console.log(res.data["status"])
             return true;
         }else {
             return false;
@@ -38,5 +39,18 @@ export const deleteExpenseApi = (id) => {
     }).catch((err)=>{
         console.log(err)
         return false
+    })
+};
+
+export const updateExpenseApi = (id,postBody) => {
+    let url = `${baseUrl}/expense/update/${id}`;
+    return axios.put(url,postBody,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            return res.data["status"];
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        return false;
     })
 };

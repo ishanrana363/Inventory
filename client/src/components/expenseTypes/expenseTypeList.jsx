@@ -7,6 +7,7 @@ import expenseTypeStore from "../../apiRequest/expenseTypesApi/expenseTypesStore
 import moment from "moment/moment.js";
 import {deleteAlert} from "../../helpers/DeleteAlert.js";
 import {deleteExpenseTypesApi} from "../../apiRequest/expenseTypesApi/expenseTypesApi.js";
+import {Toaster} from "react-hot-toast";
 
 const ExpenseTypeList = () => {
     const {expenseTypeDataList,expenseTypeDataTotal,expenseTypeDataListApi} = expenseTypeStore();
@@ -166,6 +167,7 @@ const ExpenseTypeList = () => {
                 </div>
             </div>
             <FullScreenLoder visibility = { loder } />
+            <Toaster position="top-center" reverseOrder={false}/>
         </>
     );
 };

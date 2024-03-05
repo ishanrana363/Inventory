@@ -85,7 +85,7 @@ router.put("/expense-types/update/:id",authMiddleware,expenseTypeController.upda
 router.get("/expense-types/dropdown",authMiddleware,expenseTypeController.dropdownExpenseTypeController);
 router.get("/expense-types-list/:pageNo/:perPage/:searchKeyword", authMiddleware,expenseTypeController.listExpenseTypeController);
 router.get("/expense-types/details/:id", authMiddleware,expenseTypeController.detailsByIdExpenseTypeController);
-router.delete("/expense/delete/:id", authMiddleware,expenseTypeController.deleteExpenseTypeController);
+router.delete("/expense-types/delete/:id", authMiddleware,expenseTypeController.deleteExpenseTypeController);
 
 
 // expense

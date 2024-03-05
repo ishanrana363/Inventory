@@ -26,7 +26,20 @@ const expenseStore = create((set)=>({
                 return false;
             }
         }).catch((err)=>{
-            console.log(err);
+            return false;
+        })
+    },
+    expenseDetails : [],
+    setExpenseDetails : (id)=>{
+        let url = `${baseUrl}/expense/details/${id}`;
+        return axios.get(url,config).then((res)=>{
+            if (res.data["status"]==="success"){
+                set({expenseDetails:res.data["data"]});
+            }else {
+                return false;
+            }
+        }).catch((err)=>{
+            return false;
         })
     }
 }));

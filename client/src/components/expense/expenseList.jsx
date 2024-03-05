@@ -8,6 +8,7 @@ import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 import {deleteAlert} from "../../helpers/DeleteAlert.js";
 import {deleteExpenseApi} from "../../apiRequest/expenseApi/expenseApiRequest.js";
 import {errorToast} from "../../helpers/FormHelper.js";
+import moment from "moment/moment.js";
 const ExpenseList = () => {
     const [loder, setLoder] = useState("d-none");
     const [searchValue, setSearchValue] = useState(0);
@@ -109,6 +110,7 @@ const ExpenseList = () => {
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">#No</td>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Type</td>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Amount</td>
+                                                        <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Created</td>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Note</td>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Action</td>
                                                     </tr>
@@ -118,17 +120,17 @@ const ExpenseList = () => {
                                                         expenseDataList.map((item,i)=>{
                                                             return (
                                                                 <tr key={i} >
-                                                                    <td><p className="text-xs text-start">{i+1}</p>
+                                                                    <td><p className="text-xs text-start mt-3 ">{i+1}</p>
                                                                     </td>
-                                                                    <td><p className="text-xs text-start">{item.type["0"]? item.type["0"]["name"] : "" }</p></td>
-                                                                    <td><p className="text-xs text-start">
+                                                                    <td><p className="text-xs text-start mt-3 ">{item.type["0"]? item.type["0"]["name"] : "" }</p></td>
+                                                                    <td><p className="text-xs text-start mt-3 ">
                                                                         <CurrencyFormat value={item["amount"]} displayType={'text'} thousandSeparator={true} prefix={'$'}/>
-
-
                                                                     </p></td>
-                                                                    <td><p className="text-xs text-start">{item["note"]}</p></td>
+                                                                    <td><p className="text-xs text-start mt-3 ">{moment(item["createdDate"]).format('MMMM Do YYYY')}</p></td>
+
+                                                                    <td><p className="text-xs text-start mt-3 ">{item["note"]}</p></td>
                                                                     <td>
-                                                                        <Link to="" title={"Update"}
+                                                                        <Link to= {`/expense/update/${item["_id"]}`} title={"Update"}
                                                                               className="btn text-info btn-outline-light p-2 mb-0 btn-sm">
                                                                             <AiOutlineEdit size={15}/>
                                                                         </Link>
