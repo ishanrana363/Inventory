@@ -1,0 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import 'scrollbar.css';
+@import 'sidebar.css';
+@import 'progress.css';
+@import 'modal.css';
+@import 'dropdownmenu.css';
+body {
+  background: var(--bs-gray-100);
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif !important;
+}
+h1, h2, h3, h4, h5, h6,p,b,i ,label,button, input, textarea,span {
+  font-family: 'Poppins', sans-serif !important;
+  font-weight: 400;
+}
+a {
+  font-family: 'Poppins', sans-serif !important;
+  cursor: pointer !important;
+}
+.border-radius-0 {
+  border-radius: 0 !important;
+}
+.recharts-text {
+  color: var(--bs-gray-200);
+  font-weight: 300;
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif !important;
+}
+
+.table-section{
+  height: 55vh!important;
+  overflow-y: auto;
+  scrollbar-color: var(--bs-gray-500) var(--bs-light) !important;
+  scrollbar-width: thin !important;
+}
+
+table {
+  width: 100%;
+}
+td {
+  white-space: nowrap;
+}
+td div {
+  white-space: normal;
+  word-break: break-all;
+  display: block;
+}

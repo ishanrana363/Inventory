@@ -11,10 +11,6 @@ const expenseSchema = new Schema({
         type : mongoose.Schema.Types.ObjectId,
         required : true
     },
-    name : {
-        type : String,
-        required : true
-    },
     amount : {
         type : Number,
         required : true

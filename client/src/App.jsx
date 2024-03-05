@@ -1,35 +1,71 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import CreateUserPage from "./pages/users/createUserPage.jsx";
+import UserLoginPage from "./pages/users/userLoginPage.jsx";
+import SendEmailUserPage from "./pages/passwordReset/sendEmailUserPage.jsx";
+import UserOtpVerifyPage from "./pages/passwordReset/userOtpVerifyPage.jsx";
+import NewPasswordSetPage from "./pages/passwordReset/newPasswordSetPage.jsx";
+import CustomerCreatePage from "./pages/customer/customerCreatePage.jsx";
+import {getToken} from "./helpers/SessionHelper.js";
+import DashboardSummeryPage from "./pages/dashboardSummery/dashboardSummeryPage.jsx";
+import SupplierCreatePage from "./pages/supplier/supplierCreatePage.jsx";
+import CreateBrandPage from "./pages/brand/createBrandPage.jsx";
+import CreateCategoryPage from "./pages/category/createCategoryPage.jsx";
+import ExpenseTypesCreatePage from "./pages/expenseTypes/expenseTypesCreatePage.jsx";
+import CustomerListPage from "./pages/customer/customerListPage.jsx";
+import CustomerUpdatePage from "./pages/customer/customerUpdatePage.jsx";
+import SupplierListPage from "./pages/supplier/supplierListPage.jsx";
+import SupplierUpdatePage from "./pages/supplier/supplierUpdatePage.jsx";
+import ExpenseTypeListPage from "./pages/expenseTypes/expenseTypeListPage.jsx";
+import ExpenseTypesUpdatePage from "./pages/expenseTypes/expenseTypesUpdatePage.jsx";
+import ExpenseCreate from "./components/expense/expenseCreate.jsx";
+import ExpenseCreatePage from "./pages/expense/expenseCreatePage.jsx";
+import ExpenseListPage from "./pages/expense/expenseListPage.jsx";
+import ExpenseUpdatePage from "./pages/expense/expenseUpdatePage.jsx";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    if (getToken()){
+        return(
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={ < DashboardSummeryPage /> } />
+                        <Route path="/customer/create" element={<CustomerCreatePage/>} />
+                        <Route path="/customer/list" element={<CustomerListPage/>} />
+                        <Route path="/update/customer/:id" element={<CustomerUpdatePage/>} />
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+                        <Route path="/supplier/create" element={<SupplierCreatePage/>} />
+                        <Route path="/supplier/list" element={<SupplierListPage/>} />
+                        <Route path="/supplier/update/:id" element={<SupplierUpdatePage/>} />
 
-export default App
+                        <Route path="/expense/type/create" element={<ExpenseTypesCreatePage/>} />
+                        <Route path="/expense/type/list" element={<ExpenseTypeListPage/>} />
+                        <Route path="/expense/type/update/:id" element={<ExpenseTypesUpdatePage/>} />
+
+                        <Route path="/expense/create" element={<ExpenseCreatePage/>} />
+                        <Route path="/expense/list" element={<ExpenseListPage/>} />
+                        <Route path="/expense/update/:id" element={<ExpenseUpdatePage/>} />
+
+
+
+                        <Route path="/brand/create" element={<CreateBrandPage/>} />
+                        <Route path="/category/create" element={<CreateCategoryPage/>} />
+                    </Routes>
+                </BrowserRouter>
+        )
+    }else {
+        return (
+                <BrowserRouter>
+                    <Routes>
+                        <Route path="/" element={<UserLoginPage/>} />
+                        <Route path="/registration" element={<CreateUserPage/>} />
+                        <Route path="/send/otp" element={ <SendEmailUserPage/> } />
+                        <Route path="/verify/otp" element={ <UserOtpVerifyPage/> } />
+                        <Route path="/set/password" element={ <NewPasswordSetPage/> } />
+
+                    </Routes>
+                </BrowserRouter>
+        )
+    }
+};
+
+export default App;

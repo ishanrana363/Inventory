@@ -10,7 +10,7 @@ const listService= async (req,dataModel,searchArray) => {
 
         let data;
 
-        if (searchValue!=="0") {
+        if (Number(searchValue)!== 0) {
             let searchQuery = {$or:searchArray}
             data = await dataModel.aggregate([
                 {$match: {userEmail:email}},

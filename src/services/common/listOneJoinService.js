@@ -8,7 +8,7 @@ const ListOneJoinService= async (req, dataModel, searchArray, joinStage) => {
 
         let data;
 
-        if (searchValue!=="0") {
+        if ( Number(searchValue) !== 0 ) {
             data = await dataModel.aggregate([
                 {$match: {userEmail:userEmail}},
                 joinStage,

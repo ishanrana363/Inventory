@@ -6,7 +6,7 @@ const listTowJoinService = async (req,dataModel,searchArray,joinOneState,joinTow
         let skipRow = (pageNo-1)*perPage;
         let searchValue = req.params.searchKeyword;
         let data;
-        if (searchValue!=="0"){
+        if ( Number(searchValue)!== 0 ){
             data = await dataModel.aggregate([
                 { $match : { userEmail:userEmail } },
                 { $match : { $or : searchArray } },
