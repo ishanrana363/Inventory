@@ -60,7 +60,7 @@ const CategoryList = () => {
                 errorToast("Category delete fail");
             }
         }
-    }
+    };
     return (
         <>
             <div className="container-fluid my-5">

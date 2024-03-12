@@ -28,10 +28,25 @@ import CategoryList from "./components/category/categoryList.jsx";
 import CategoryListPage from "./pages/category/categoryListPage.jsx";
 import CategoryUpdate from "./components/category/categoryUpdate.jsx";
 import UpdateCategoryListPage from "./pages/category/updateCategoryListPage.jsx";
+import ProductCreate from "./components/product/productCreate.jsx";
+import ProductCreatePage from "./pages/product/productCreatePage.jsx";
+import ProductListPage from "./pages/product/productListPage.jsx";
+import ProductUpdatePage from "./pages/product/productUpdatePage.jsx";
+import ExpenseReportPage from "./pages/report/expenseReportPage.jsx";
+import SalesReportPage from "./pages/report/salesReportPage.jsx";
+import PurchaseReportPage from "./pages/report/purchaseReportPage.jsx";
+import ReturnReportPage from "./pages/report/returnReportPage.jsx";
+import ProfilePage from "./pages/profile/profilePage.jsx";
+import PurchaseCreateUpdatePage from "./pages/purchase/purchaseCreateUpdatePage.jsx";
+import SalesCreatePage from "./pages/sales/salesCreatePage.jsx";
+import SaleListPage from "./pages/sales/saleListPage.jsx";
+import ReturnCreatePage from "./pages/return/returnCreatePage.jsx";
+import ProductReturnListPage from "./pages/return/productReturnListPage.jsx";
 
 const App = () => {
     if (getToken()){
         return(
+            <>
                 <BrowserRouter>
                     <Routes>
 
@@ -61,13 +76,34 @@ const App = () => {
                         <Route path="/category/list" element={<CategoryListPage/>} />
                         <Route path="/category/update/:id" element={<UpdateCategoryListPage/>} />
 
+                        <Route path="/product/create" element={< ProductCreatePage />} />
+                        <Route path="/product/list" element={< ProductListPage />} />
+                        <Route path="/product/update/:id" element={< ProductUpdatePage />} />
+
+
+                        <Route path="/expense/report" element={<ExpenseReportPage/>} />
+                        <Route path="/sale/report" element={<SalesReportPage/>} />
+                        <Route path="/purchase/report" element={<PurchaseReportPage/>} />
+                        <Route path="/return/report" element={<ReturnReportPage/>} />
+
+                        <Route path="/purchase/create" element={<PurchaseCreateUpdatePage/>} />
 
 
 
+                        <Route path="/sales/create" element={<SalesCreatePage/>} />
+                        <Route path="/sales/list" element={<SaleListPage/>} />
+
+
+                        <Route path={"/return/create"} element={<ReturnCreatePage/>} />
+                        <Route path={"/return/list"} element={<ProductReturnListPage/>} />
+
+
+                        <Route path="/profile" element={<ProfilePage/>} />
 
 
                     </Routes>
                 </BrowserRouter>
+            </>
         )
     }else {
         return (

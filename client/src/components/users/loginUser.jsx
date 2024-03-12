@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {errorToast, isEmail, successToast} from "../../helpers/FormHelper.js";
-import {userLoginApi} from "../../apiRequest/userApiRequest.js";
+import {userLoginApi} from "../../apiRequest/userApi/userApiRequest.js";
 import {Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 
@@ -31,7 +31,7 @@ const LoginUser = () => {
             let res = await userLoginApi(data);
             setLoder("d-none");
             if (res){
-                navigate("/")
+                window.location.href="/"
                 successToast("User login successfully");
             }else {
                 errorToast("User login fail");

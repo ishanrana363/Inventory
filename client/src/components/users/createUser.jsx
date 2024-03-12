@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {errorToast, isEmail, isEmpty, isMobile, successToast} from "../../helpers/FormHelper.js";
-import {registration} from "../../apiRequest/userApiRequest.js";
+import {registration} from "../../apiRequest/userApi/userApiRequest.js";
 import {toast, Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 

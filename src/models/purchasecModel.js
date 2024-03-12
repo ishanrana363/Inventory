@@ -4,11 +4,9 @@ const {Schema,model} = mongoose;
 const purchaseSchema = new Schema({
     userEmail : {
         type : String,
-        required : true
     },
     supplierId : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true
     },
     vatTax : {
         type : Number,
@@ -31,7 +29,7 @@ const purchaseSchema = new Schema({
     },
     note : {
         type : String,
-        required : true
+        required:true
     },
     createdDate : {
         type : Date,

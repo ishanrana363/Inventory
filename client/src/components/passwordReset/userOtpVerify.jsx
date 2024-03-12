@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 import {errorToast, isEmail, isEmpty, successToast} from "../../helpers/FormHelper.js";
-import {userOtpVerifyApi} from "../../apiRequest/passwordResetApiRequest.js";
+import {userOtpVerifyApi} from "../../apiRequest/passwordResetApi/passwordResetApiRequest.js";
 
 const UserOtpVerify = () => {
     const [loder, setLoder] = useState("d-none")

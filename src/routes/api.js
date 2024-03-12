@@ -106,6 +106,7 @@ router.put("/product/update/:id",authMiddleware, productsListController.productU
 router.get("/product-list/:pageNo/:perPage/:searchKeyword",authMiddleware, productsListController.productListController);
 router.delete("/product/delete/:id",authMiddleware, productsListController.productDeleteController);
 router.get("/product/details/:id",authMiddleware, productsListController.productDetailsById);
+router.get("/product/dropdown",authMiddleware, productsListController.productDropDownController);
 
 
 //purchase
@@ -136,10 +137,10 @@ router.delete("/return/delete/:id",authMiddleware,returnController.deleteReturnC
 //report
 
 
-router.get("/expense/report",authMiddleware, reportController.expenseReportController);
-router.get("/purchase/report",authMiddleware, reportController.purchaseReportController);
-router.get("/return/report",authMiddleware, reportController.returnReportController);
-router.get("/sales/report",authMiddleware, reportController.salesReportController);
+router.post("/expense/report",authMiddleware, reportController.expenseReportController);
+router.post("/purchase/report",authMiddleware, reportController.purchaseReportController);
+router.post("/return/report",authMiddleware, reportController.returnReportController);
+router.post("/sales/report",authMiddleware, reportController.salesReportController);
 
 
 // summery

@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {errorToast, isEmail, successToast} from "../../helpers/FormHelper.js";
-import {sendEmailUserApi} from "../../apiRequest/passwordResetApiRequest.js";
+import {sendEmailUserApi} from "../../apiRequest/passwordResetApi/passwordResetApiRequest.js";
 import {Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 

@@ -6,13 +6,12 @@ const expenseReportService = async (req) => {
         let fromDate = req.body["fromDate"];
         let toDate = req.body["toDate"];
         let data = await expenseModel.aggregate([
-            {$match: {userEmail: userEmail, createdDate : { $gte : new Date(fromDate) } }},
+            {$match: {userEmail: userEmail, createdDate : { $gte : new Date(fromDate),$lte : new Date(toDate)} }},
             {
                 $facet : {
                     total : [ { $group : { _id : 0 , totalAmount : { $sum : "$amount" } } } ],
                     Rows : [
-                        { $lookup : { from : "expensetypes", localField:"typeId",foreignField:"_id",as:"expense" } },
-                        { $unwind : "$expense" }
+                        { $lookup : { from : "expensetypes", localField:"typeId",foreignField:"_id",as:"Type" } },
                     ]
                 }
             }

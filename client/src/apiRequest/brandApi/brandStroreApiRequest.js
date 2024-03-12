@@ -41,8 +41,24 @@ const brandStore = create((set)=>({
         }).catch((err)=>{
             return false;
         })
+    },
+    brandDropDown : [],
+    setBrandDropDown : ()=>{
+        let url = `${baseUrl}/brand/dropdown`
+        return axios.get(url,config).then((res)=>{
+            if (res.data["status"]==="success"){
+                set({brandDropDown:res.data["data"]});
+            }else {
+                return false;
+            }
+        }).catch((err)=>{
+            return false;
+        })
     }
 }));
+
+
+
 
 export default brandStore;
 

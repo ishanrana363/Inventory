@@ -43,6 +43,19 @@ const categoryStore = create((set)=>({
         }).catch((err)=>{
             return false;
         })
+    },
+    categoryDropDown : [],
+    setCategoryDropDown : ()=>{
+        let url = `${baseUrl}/category/dropdown`
+        return axios.get(url,config).then((res)=>{
+            if (res.data["status"]==="success"){
+                set({categoryDropDown:res.data["data"]});
+            }else {
+                return false;
+            }
+        }).catch((err)=>{
+            return false;
+        })
     }
 
 

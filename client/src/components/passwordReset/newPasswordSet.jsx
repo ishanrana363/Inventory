@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Toaster} from "react-hot-toast";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 import {errorToast, isEmail, isEmpty, successToast} from "../../helpers/FormHelper.js";
-import {newPasswordSetApi} from "../../apiRequest/passwordResetApiRequest.js";
+import {newPasswordSetApi} from "../../apiRequest/passwordResetApi/passwordResetApiRequest.js";
 
 const NewPasswordSet = () => {
     const [loder, setLoder] = useState("d-none")

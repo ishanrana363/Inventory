@@ -1,6 +1,11 @@
 import axios from "axios";
-import {setToken, setUserDetails} from "../helpers/SessionHelper.js";
-const baseUrl = `http://localhost:5050/api/v1`
+import {getToken, setToken, setUserDetails} from "../../helpers/SessionHelper.js";
+const baseUrl = `http://localhost:5050/api/v1`;
+const config = {
+    headers : {
+        "token" : getToken()
+    }
+};
 
 export const registration = async (postBody)=>{
     try{
@@ -29,4 +34,27 @@ export const userLoginApi = async (postBody)=>{
     }   catch (e){
         return false
     }
+};
+
+export const profileUpdateApi = (data) => {
+
+    let url = `${baseUrl}/update/profile`;
+    return axios.put(url,data,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            setUserDetails(data);
+            return true;
+        }else {
+            return false
+        }
+    }).catch((err)=>{
+        return false;
+    })
+
 }
+
+
+
+
+
+
+

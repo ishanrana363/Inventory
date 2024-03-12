@@ -9,6 +9,7 @@ const returnProductDataModel = require("../../models/returnProductData");
 const purchaseProductModel = require("../../models//purchaseProductModel");
 const productListModel = require("../../models/productListModel");
 const mongoose = require("mongoose");
+const dropDownService = require("../../services/common/dropdownService")
 
 
 exports.productCreateController = async (req,res)=>{
@@ -67,9 +68,47 @@ exports.productDeleteController = async (req,res)=>{
 };
 
 exports.productDetailsById = async (req,res)=>{
-    let result = await detailsByIdService(req,productListModel);
-    res.status(200).send(result);
+    try{
+        let userEmail = req.headers["email"];
+        let id = new mongoose.Types.ObjectId(req.params.id);
+
+        // join categoryId
+
+        let joinWithCategoryId = {
+            $lookup : {
+                from : "categories", localField:"categoryId",foreignField:"_id",as:"category"
+            }
+        };
+        let unwindCategory = { $unwind : "$category" };
+
+        // joinWithBrandId
+
+        let joinWithBrandId = {
+            $lookup : {
+                from : "brands",localField:"brandId",foreignField:"_id",as:"brand"
+            }
+        };
+        let unwindBrandId = { $unwind: "$brand" }
+
+        let data = await productListModel.aggregate([
+            { $match : {userEmail : userEmail , _id : id } },
+            joinWithCategoryId,unwindCategory,joinWithBrandId,unwindBrandId
+        ]);
+        res.status(200).json({
+            status:"success",data:data
+        });
+    }catch (e) {
+        res.status(500).send({
+            status:"fail",msg : e.toString()
+        })
+    }
 };
+
+
+exports.productDropDownController = async (req,res)=>{
+    let result = await dropDownService(req,productListModel,{_id:1,name:1});
+    res.status(200).send(result);
+}
 
 
 

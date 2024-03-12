@@ -8,11 +8,9 @@ const productSchema = new Schema({
     },
     categoryId : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true
     },
     brandId : {
         type : mongoose.Schema.Types.ObjectId,
-        required : true
     },
     name : {
         type : String,
