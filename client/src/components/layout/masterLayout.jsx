@@ -109,7 +109,7 @@ const MasterLayout = () => {
                                     </NavLink>
                                 </div>
 
-                                <NavLink to="" className="side-bar-item ">
+                                <NavLink to={"/purchase/list"} className="side-bar-item ">
                                     <span className="side-bar-item-caption ms-5 ">Purchase List</span>
                                 </NavLink>
                             </div>

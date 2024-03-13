@@ -42,6 +42,7 @@ import SalesCreatePage from "./pages/sales/salesCreatePage.jsx";
 import SaleListPage from "./pages/sales/saleListPage.jsx";
 import ReturnCreatePage from "./pages/return/returnCreatePage.jsx";
 import ProductReturnListPage from "./pages/return/productReturnListPage.jsx";
+import PurchaseListPage from "./pages/purchase/purchaseListPage.jsx";
 
 const App = () => {
     if (getToken()){
@@ -86,7 +87,8 @@ const App = () => {
                         <Route path="/purchase/report" element={<PurchaseReportPage/>} />
                         <Route path="/return/report" element={<ReturnReportPage/>} />
 
-                        <Route path="/purchase/create" element={<PurchaseCreateUpdatePage/>} />
+                        <Route path={"/purchase/create"} element={<PurchaseCreateUpdatePage/>} />
+                        <Route path={"/purchase/list"} element={<PurchaseListPage/>} />
 
 
 

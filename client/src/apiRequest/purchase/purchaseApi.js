@@ -29,3 +29,16 @@ export const purchaseCreateApi = (parentBody,childBody) => {
 };
 
 
+export const purchaseDeleteApi = (id) => {
+    let url = `${baseUrl}/purchase/delete/${id}`;
+    return axios.delete(url,config).then((res)=>{
+        if (res.data["status"]==="success"){
+            return res.data["status"]
+        }else {
+            return false;
+        }
+    }).catch((err)=>{
+        return false;
+    })
+}
+

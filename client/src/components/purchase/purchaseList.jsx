@@ -5,34 +5,36 @@ import {AiFillDelete} from "react-icons/ai";
 import ReactPaginate from "react-paginate";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 import {Toaster} from "react-hot-toast";
-import {deleteAlert} from "../../helpers/DeleteAlert.js";
-import {errorToast, successToast} from "../../helpers/FormHelper.js";
-import productReturnStore from "../../apiRequest/returnApi/returnApiStore.js";
-import {returnDeleteApi} from "../../apiRequest/returnApi/returnApiRequest.js";
+import purchaseStore from "../../apiRequest/purchase/purchaseStore.js";
 import moment from "moment/moment.js";
+import {deleteAlert} from "../../helpers/DeleteAlert.js";
+import {salesDeleteApi} from "../../apiRequest/salesApi/salesApiRequest.js";
+import {errorToast, successToast} from "../../helpers/FormHelper.js";
+import {purchaseDeleteApi} from "../../apiRequest/purchase/purchaseApi.js";
 
-const ProductReturnList = () => {
-    const {returnData,totalReturnData,setReturnData} = productReturnStore()
+const PurchaseList = () => {
     const [loder, setLoder] = useState("d-none");
-    const [searchValue, setSearchValue] = useState(0);
     const [perPage, setPerPage] = useState(5);
+    const [searchValue, setSearchValue] = useState(0);
+    const {purchaseData,totalPurchaseData,setPurchaseData} = purchaseStore();
     useEffect(() => {
         (async ()=>{
             setLoder("");
-            await setReturnData(1,perPage,0);
+            await setPurchaseData(1,perPage,0);
             setLoder("d-none");
         })()
     }, []);
+
     const handlePageClick = async (even) => {
         setLoder("");
-        await setReturnData(even.selected,perPage,0);
+        await setPurchaseData(even.selected,perPage,0);
         setLoder("d-none");
     };
-    const getPerPageValue = async (even) => {
+    const getPurPageValue = async (even) => {
         setPerPage(parseInt(even.target.value));
         setLoder("");
-        await setReturnData(1,even.target.value,0);
-        setLoder("d-none");
+        await setPurchaseData(1,even.target.value,0);
+        setLoder("d-none")
     };
 
     const getSearchInputValue = async (even) => {
@@ -40,31 +42,31 @@ const ProductReturnList = () => {
         if ((even.target.value.length===0)){
             setSearchValue(0);
             setLoder("");
-            await setReturnData(1,perPage,0);
+            await setPurchaseData(1,perPage,0);
             setLoder("d-none");
         }
     };
-
     const submitSearchValue = async () => {
         setLoder("");
-        await setReturnData(1,perPage,0);
+        await setPurchaseData(1,perPage,0);
         setLoder("d-none");
     };
-
-    const deleteSalesData = async (id) => {
+    const deletePurchaseData = async (id) => {
         let deleteResp = await deleteAlert(id);
         if (deleteResp.isConfirmed){
-            let resp = await returnDeleteApi(id);
+            let resp = await purchaseDeleteApi(id);
             if (resp){
-                successToast("Sales data delete successfully");
+                successToast("Purchase data delete successfully");
                 setLoder("");
-                await setReturnData(1,perPage,0);
+                await setPurchaseData(1,perPage,0);
                 setLoder("d-none");
             }else {
-                errorToast("Sales data delete fail");
+                errorToast("Purchase data delete fail");
             }
         }
     };
+
+
     return (
         <>
             <div className="container-fluid my-5">
@@ -75,16 +77,16 @@ const ProductReturnList = () => {
                                 <div className="container-fluid">
                                     <div className="row">
                                         <div className="col-4">
-                                            <h5>Sales List</h5>
+                                            <h5>Purchase List</h5>
                                         </div>
 
                                         <div className="col-2">
-                                            <input  placeholder="Text Filter" className="form-control form-control-sm"/>
+                                            <input placeholder="Text Filter" className="form-control form-control-sm"/>
                                         </div>
 
                                         <div className="col-2">
-                                            <select onChange={getPerPageValue}
-                                                    className="form-control mx-2 form-select-sm form-select form-control-sm">
+                                            <select onChange={getPurPageValue}
+                                                className="form-control mx-2 form-select-sm form-select form-control-sm">
                                                 <option value="5">5 Per Page</option>
                                                 <option value="20">20 Per Page</option>
                                                 <option value="30">30 Per Page</option>
@@ -95,8 +97,13 @@ const ProductReturnList = () => {
                                         </div>
                                         <div className="col-4">
                                             <div className="input-group mb-3">
-                                                <input onChange={getSearchInputValue} type="text" className="form-control form-control-sm" placeholder="Search.." aria-label="Recipient's username" aria-describedby="button-addon2"/>
-                                                <button onClick={submitSearchValue} className="btn  btn-success btn-sm mb-0" type="button">Search</button>
+                                                <input  type="text" onChange={getSearchInputValue}
+                                                       className="form-control form-control-sm" placeholder="Search.."
+                                                       aria-label="Recipient's username"
+                                                       aria-describedby="button-addon2"/>
+                                                <button onClick={submitSearchValue}
+                                                        className="btn  btn-success btn-sm mb-0" type="button">Search
+                                                </button>
                                             </div>
                                         </div>
                                     </div>
@@ -107,7 +114,7 @@ const ProductReturnList = () => {
                                                     <thead className="sticky-top bg-white">
                                                     <tr>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Number</td>
-                                                        <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Customer</td>
+                                                        <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Supplier</td>
                                                         <td className="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Grand
                                                             Total
                                                         </td>
@@ -125,14 +132,14 @@ const ProductReturnList = () => {
                                                     </thead>
                                                     <tbody>
                                                     {
-                                                        returnData.map((item,i)=>{
+                                                        purchaseData.map((item, i) => {
                                                             return (
                                                                 <tr key={i}>
                                                                     <td>
-                                                                        <p className="text-xs text-start mt-3 ">{i+1}</p>
+                                                                        <p className="text-xs text-start mt-3 ">{i + 1}</p>
                                                                     </td>
                                                                     <td>
-                                                                        <p className="text-xs text-start mt-3 ">{item["return"][0]["name"]}</p>
+                                                                        <p className="text-xs text-start mt-3 ">{item["supplier"][0]["name"]}</p>
                                                                     </td>
 
                                                                     <td>
@@ -186,9 +193,10 @@ const ProductReturnList = () => {
                                                                     </td>
 
                                                                     <td>
-                                                                        <Link to={""} title={"Delete"} >
-                                                                            <button onClick={deleteSalesData.bind(this,item["_id"])}
-                                                                                    className="btn btn-outline-light text-success p-2 mb-0 btn-sm ms-2">
+                                                                        <Link to={""} title={"Delete"}>
+                                                                            <button onClick={deletePurchaseData.bind(this,item["_id"])}
+
+                                                                                className="btn btn-outline-light text-success p-2 mb-0 btn-sm ms-2">
                                                                                 <AiFillDelete size={15}/>
                                                                             </button>
                                                                         </Link>
@@ -217,7 +225,7 @@ const ProductReturnList = () => {
                                                     breakLabel="..."
                                                     breakClassName="page-item"
                                                     breakLinkClassName="page-link"
-                                                    pageCount={totalReturnData / perPage}
+                                                    pageCount={totalPurchaseData / perPage}
                                                     marginPagesDisplayed={2}
                                                     pageRangeDisplayed={5}
                                                     onPageChange={handlePageClick}
@@ -240,4 +248,4 @@ const ProductReturnList = () => {
     );
 };
 
-export default ProductReturnList;
+export default PurchaseList;

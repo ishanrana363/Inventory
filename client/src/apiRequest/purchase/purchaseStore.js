@@ -37,6 +37,30 @@ const purchaseStore = create((set)=>({
         })
     },
 
+
+    purchaseData : [],
+    totalPurchaseData : [],
+    setPurchaseData : (pageNo,perPage,searchValue)=>{
+        let url = `${baseUrl}/purchase-list/${pageNo}/${perPage}/${searchValue}`;
+        return axios.get(url,config).then((res)=>{
+            if (res.data["status"]==="success"){
+                if (res.data["data"][0]["Rows"].length>0){
+                    set({purchaseData:res.data["data"][0]["Rows"]});
+                    set({totalPurchaseData:res.data["data"][0]["Total"][0]["count"]});
+                }else {
+                    set({purchaseData:[]});
+                    set({totalPurchaseData:[]});
+                }
+            }else {
+                return false;
+            }
+        }).catch((err)=>{
+            return false;
+        })
+    },
+
+
+
 }));
 
 export default purchaseStore;

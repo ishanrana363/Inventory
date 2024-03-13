@@ -15,7 +15,7 @@ class FormHelper {
         reacthotToast.error(msg, { position: "top-center" });
     }
     successToast(msg) {
-        reacthotToast.success(msg, { position: "bottom-center" });
+        reacthotToast.success(msg, { position: "top-center" });
     }
     getBase64(file) {
         return new Promise((resolve, reject) => {

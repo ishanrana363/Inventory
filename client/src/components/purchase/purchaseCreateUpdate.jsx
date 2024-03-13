@@ -46,6 +46,7 @@ const PurchaseCreateUpdate = () => {
 
     };
     const [data, setData] = useState({
+        supplierId : "",
         vatTax : "",
         discount : "",
         otherCost : "",
@@ -53,7 +54,7 @@ const PurchaseCreateUpdate = () => {
         grandTotal : "",
         note : ""
     });
-    const {vatTax,discount,otherCost,shippingCost,grandTotal,note} = data;
+    const {supplierId,vatTax,discount,otherCost,shippingCost,grandTotal,note} = data;
     const getPurchaseInputValue = (name,value) => {
         setData((prevState)=>({
             ...prevState,
@@ -89,7 +90,8 @@ const PurchaseCreateUpdate = () => {
                                     <hr className="bg-light"/>
                                     <div className="col-12 p-1">
                                         <label className="form-label">Supplier</label>
-                                        <select onChange={(e)=>{store.dispatch(OnChangePurchaseInput({Name:"SupplierID",Value:e.target.value}))}} className="form-select form-select-sm">
+                                        <select value={supplierId} onChange={ (e)=>{getPurchaseInputValue("supplierId",e.target.value)} }
+                                                className="form-select form-select-sm">
                                             <option value="">Select Supplier</option>
                                             {
                                                 supplierDropDown.map((item,i)=>{
