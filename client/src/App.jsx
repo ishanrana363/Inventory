@@ -43,6 +43,11 @@ import SaleListPage from "./pages/sales/saleListPage.jsx";
 import ReturnCreatePage from "./pages/return/returnCreatePage.jsx";
 import ProductReturnListPage from "./pages/return/productReturnListPage.jsx";
 import PurchaseListPage from "./pages/purchase/purchaseListPage.jsx";
+import AboutPage from "./pages/footerPage/aboutPage.jsx";
+import PrivacyPollicy from "./pages/footerPage/privicyPolicy.jsx";
+import RefoundPage from "./pages/footerPage/refoundPage.jsx";
+import HowToBuy from "./pages/footerPage/howToBuy.jsx";
+import ComplainPage from "./pages/footerPage/complainPage.jsx";
 
 const App = () => {
     if (getToken()){
@@ -101,6 +106,15 @@ const App = () => {
 
 
                         <Route path="/profile" element={<ProfilePage/>} />
+
+
+                        <Route path={"/about"} element={<AboutPage/>} />
+                        <Route path={"/privacy-policy"} element={ <PrivacyPollicy/> } />
+                        <Route path={"/refund"} element={ <RefoundPage/> } />
+                        <Route path={"/terms"} element={ <RefoundPage/> } />
+                        <Route path={"/how-to-buy"} element={ <HowToBuy/> } />
+                        <Route path={"/contact"} element={ <HowToBuy/> } />
+                        <Route path={"/complain"} element={ <ComplainPage/> } />
 
 
                     </Routes>

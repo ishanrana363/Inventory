@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import CurrencyFormat from "react-currency-format";
 import { Area, AreaChart, CartesianGrid, ResponsiveContainer, Tooltip, XAxis, YAxis } from "recharts";
-import dashboardStore from "../../apiRequest/dashboardApi.js";
+import dashboardStore from "../../apiRequest/dashboard/dashboardApi.js";
 import FullScreenLoder from "../layout/FullScreenLoder.jsx";
 
 const DashboardSummery = () => {

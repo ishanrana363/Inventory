@@ -2,7 +2,7 @@ import axios from "axios";
 
 const baseUrl = `http://localhost:5050/api/v1`;
 import {create} from "zustand";
-import {getToken} from "../helpers/SessionHelper.js";
+import {getToken} from "../../helpers/SessionHelper.js";
 
 const config = {
     headers : {
